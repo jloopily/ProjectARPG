@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/英雄联盟,Marshmello - Flash Funk (Marshmello Remix).mp3-a517f5c5e8787c1c347098739c69681f.mp3str"
+
+[deps]
+
+source_file="res://Music and Sounds/英雄联盟,Marshmello - Flash Funk (Marshmello Remix).mp3"
+dest_files=[ "res://.import/英雄联盟,Marshmello - Flash Funk (Marshmello Remix).mp3-a517f5c5e8787c1c347098739c69681f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
