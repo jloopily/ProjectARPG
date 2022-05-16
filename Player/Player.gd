@@ -14,17 +14,22 @@ enum{
 var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
+var stats = Playerstats
 
 onready var animationPlyer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
+onready var light2D = $Light2D
+onready var hurtbox = $Hurtbox
 
 func _ready():
+	stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
 	swordHitbox.knockback_vector = roll_vector
+	
 
-func _physics_process(delta):
+func _physics_process(delta):#主程序，状态机
 	match state:
 		MOVE:
 			move_state(delta)
@@ -34,9 +39,22 @@ func _physics_process(delta):
 		
 		ATTACK:
 			attack_state(delta)
-	
-	
-	
+			
+	if Input.is_action_just_pressed("ui_down"):
+		light2D.rotation_degrees = 90
+	if Input.is_action_just_pressed("ui_up"):
+		light2D.rotation_degrees = -90
+	if Input.is_action_just_pressed("ui_right"):
+		light2D.rotation_degrees = 0
+	if Input.is_action_just_pressed("ui_left"):
+		light2D.rotation_degrees = 180
+		
+	if light2D.enabled:
+		if Input.is_action_just_pressed("light_on"):
+			light2D.enabled = false
+	else:
+		if Input.is_action_just_pressed("light_on"):
+			light2D.enabled = true
 	
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -65,9 +83,11 @@ func move_state(delta):
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK
 		
+		
 func roll_state(delta):
 	velocity = roll_vector * ROLL_SPEED
 	animationState.travel("Roll")
+	hurtbox.start_invincibility(0.5)
 	move()
 	
 
@@ -84,3 +104,9 @@ func roll_animation_finished():
 	
 func attack_animation_finished():
 	state = MOVE
+
+
+func _on_Hurtbox_area_entered(area):
+	stats.health -= 1
+	hurtbox.start_invincibility(0.5)
+	hurtbox.creat_hit_effect()

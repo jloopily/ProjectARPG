@@ -20,6 +20,8 @@ var state = CHASE
 onready var sprite = $Animatedsprite
 onready var stats = $stats
 onready var playerDetectionZone = $PlayerDetectionZone
+onready var hurtbox = $Hurtbox
+onready var softcollision = $softpengzhuang
 
 func _ready():
 	print(stats.max_health)
@@ -43,6 +45,11 @@ func _physics_process(delta):
 			else:
 				state = IDLE
 			sprite.flip_h= (velocity.x < 0)
+			
+			
+			
+	if softcollision.is_colliding():
+		velocity += softcollision.get_push_vector() * delta * 400 
 	velocity = move_and_slide(velocity)
 			
 func seek_player():
@@ -53,6 +60,7 @@ func seek_player():
 func _on_Hurtbox_area_entered(area):
 	stats.health -= area.damage 
 	knockback = area.knockback_vector * 120
+	hurtbox.creat_hit_effect()
 
 
 func _on_stats_no_health():
