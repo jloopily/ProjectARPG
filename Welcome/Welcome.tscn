@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Welcome/start.gd" type="Script" id=1]
+[ext_resource path="res://Welcome/Button2.gd" type="Script" id=2]
+
+[node name="Welcome" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 88.0
+margin_right = 192.0
+margin_bottom = 108.0
+text = "start"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 128.0
+margin_top = 120.0
+margin_right = 192.0
+margin_bottom = 140.0
+text = "quit"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_Button2_pressed"]

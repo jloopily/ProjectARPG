@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/UnderTides.mp3-040222c1c6919db72f586f5ade5da046.mp3str"
+
+[deps]
+
+source_file="res://Music and Sounds/UnderTides.mp3"
+dest_files=[ "res://.import/UnderTides.mp3-040222c1c6919db72f586f5ade5da046.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

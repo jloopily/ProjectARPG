@@ -692,6 +692,7 @@ shape = SubResource( 36 )
 disabled = true
 
 [node name="Light2D" type="Light2D" parent="."]
+enabled = false
 texture = ExtResource( 5 )
 offset = Vector2( 83, -1 )
 energy = 0.7
